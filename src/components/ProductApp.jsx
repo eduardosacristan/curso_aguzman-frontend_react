@@ -9,6 +9,13 @@ export const ProductApp = ({ title }) => {
 
     const [products, setProducts] = useState([]);
 
+    const [productSelected, setProductSelected] =
+        useState({
+            name: '',
+            description: '',
+            price: ''
+        })
+
     //justo después de crear el componente se ejecuta el useEffect una sola vez
     useEffect(() => {
         const result = listProducts;
@@ -16,9 +23,29 @@ export const ProductApp = ({ title }) => {
     }, []);
 
     const hadlerAddProduct = (product) => {
-        console.log(product);
-        setProducts([...products, {...product}]);
+        //console.log(product);
+
+        if (products.includes(product)) {
+            setProducts(products.map(prod => {
+                if (prod.name == product.name) {
+                    return { ...product }
+                }
+                return prod;
+            }))
+        } else {
+            setProducts([...products, { ...product }]);
+        }
+
+
     }
+
+    const handlerRemoveProduct = (name) => {
+        console.log(name);
+        setProducts(products.filter(product => product.name != name));
+    }
+
+    const handlerProductSelected = (product) => setProductSelected({ ...product });
+
 
     return (
         <>
@@ -26,10 +53,10 @@ export const ProductApp = ({ title }) => {
                 <h1>{title}</h1>
                 <div>
                     <div>
-                        <ProductForm handlerAdd={hadlerAddProduct}/>
+                        <ProductForm handlerAdd={hadlerAddProduct} productSelected={productSelected} />
                     </div>
                     <div>
-                        <ProductGrid products={products} />
+                        <ProductGrid products={products} handlerRemove={handlerRemoveProduct} handlerProductSelected={handlerProductSelected} />
                     </div>
                 </div>
             </div>
