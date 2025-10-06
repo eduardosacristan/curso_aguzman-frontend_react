@@ -30,7 +30,7 @@ export const ProductForm = ({handlerAdd, productSelected}) => {
         }}>
             <div>
                 <input name="name"
-                    style={{ 'marginBottom': '2px' }}
+                    className="form-control my-3 w-75"
                     type="text"
                     placeholder="name"
                     label=""
@@ -45,7 +45,7 @@ export const ProductForm = ({handlerAdd, productSelected}) => {
             <div>
 
                 <input name="description"
-                    style={{ 'marginBottom': '2px' }}
+                    className="form-control my-3 w-75"
                     type="text"
                     placeholder="description"
                     label=""
@@ -57,7 +57,7 @@ export const ProductForm = ({handlerAdd, productSelected}) => {
             </div>
             <div>
                 <input name="price"
-                    style={{ 'marginBottom': '4px' }}
+                    className="form-control my-3 w-75"
                     type="number"
                     placeholder="price"
                     label=""
@@ -68,7 +68,7 @@ export const ProductForm = ({handlerAdd, productSelected}) => {
                     })} />
             </div>
             <div>
-                <button type="submit">Save</button>
+                <button type="submit" className="btn btn-primary">Save</button>
             </div>
 
         </form>
