@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { listProducts } from "../services/PropductService";
+import { findAll } from "../services/PropductService";
 import { ProductGrid } from "./ProductGrid";
 import PropTypes from "prop-types";
 import { ProductForm } from "./ProductForm";
@@ -16,10 +16,14 @@ export const ProductApp = ({ title }) => {
             price: ''
         })
 
-    //justo después de crear el componente se ejecuta el useEffect una sola vez
+    const getProducts = async () => {
+        const result = await findAll();
+        setProducts(result.data._embedded.products);
+    } 
+    
+        //justo después de crear el componente se ejecuta el useEffect una sola vez
     useEffect(() => {
-        const result = listProducts;
-        setProducts(result)
+        getProducts();        
     }, []);
 
     const hadlerAddProduct = (product) => {
