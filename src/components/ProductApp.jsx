@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { findAll } from "../services/PropductService";
+import { findAll } from "../services/ProductService";
 import { ProductGrid } from "./ProductGrid";
 import PropTypes from "prop-types";
 import { ProductForm } from "./ProductForm";
